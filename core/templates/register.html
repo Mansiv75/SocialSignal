@@ -14,27 +14,39 @@
             {%  csrf_token %}
             <h2>Register</h2>
             <hr>
+            {% if messages %}
+            <div class="alert alert-info" role="alert">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </div>
+            {% endif %}
             <div class="mb-3">
-                <label for="Name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="Name">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                
+              </div>
+              <div class="mb-3">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name">
                 
               </div>
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
               </div>
             <div class="mb-3">
               <label for="exampleusername" class="form-label">Username</label>
-              <input type="type" class="form-control" id="exampleusername">
+              <input type="type" class="form-control" id="exampleusername" name="username" required>
               
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
               <label class="form-check-label" for="exampleCheck1">I've read the terms and conditions</label>
             </div>
             <p>Already have an account<a href='/login/'>login</a></p>
