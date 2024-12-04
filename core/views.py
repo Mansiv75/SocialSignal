@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def login_page(request):
@@ -28,7 +28,10 @@ def login_page(request):
 
 
     return render(request, 'login.html')
-
+def logout_page(request):
+    logout(request)
+    messages.info(request, "Logged out successfully.")
+    return redirect('/login/')
 def register_page(request):
     if request.method == 'POST':
         first_name=request.POST.get('first_name')
