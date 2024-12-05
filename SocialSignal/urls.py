@@ -24,4 +24,7 @@ urlpatterns = [
     path('register/', register_page, name="register"),
     path('logout/', logout_page, name="logout"),
     path('accounts/', include('allauth.urls')),
+    path('github-data/', fetch_githubdata, name="github"),
+    path('twitter-data/', fetch_twitterdata, name="twitter"),
+    path('google-data/', fetch_googledata, name="google")
 ]

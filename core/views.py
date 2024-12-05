@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from django.http import JsonResponse
+from .social_media_service import *
 # Create your views here.
 def login_page(request):
     if request.method == 'POST':
@@ -58,3 +59,22 @@ def register_page(request):
         messages.info(request, "Profile details updated.")
         return redirect('/register/')
     return render(request, 'register.html')
+
+
+def fetch_githubdata(request):
+    user=request.user
+    github_service=GithubService(user)
+    data=github_service.get_user_data
+    return JsonResponse(data)
+
+def fetch_twitterdata(request):
+    user=request.user
+    twitter_service=TwitterService(user)
+    data=twitter_service.get_user_profile
+    return JsonResponse(data)
+
+def fetch_googledata(request):
+    user=request.user
+    google_service=GoogleService(user)
+    data=google_service.get_user_profile
+    return JsonResponse(data)
