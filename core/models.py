@@ -11,3 +11,9 @@ class Social_Media_Account(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.platform}"
+    
+class SocialMediaStats(models.Model):
+    account=models.ForeignKey(Social_Media_Account, on_delete=models.CASCADE)
+    followers=models.IntegerField(null=True, blank=True)
+    likes=models.IntegerField(null=True, blank=True)    
+    last_update=models.DateTimeField(null=True, blank=True)

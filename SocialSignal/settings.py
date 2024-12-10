@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-bcakz24wg*x)_=ov#5j9ge8aks7u9p=9$f-+k9p0go=^k4)o34
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['b600-103-59-75-216.ngrok-free.app', '127.0.0.1:8000', '127.0.0.1','localhost']
 
 
 # Application definition
@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.google',  # Google login
+    'allauth.socialaccount.providers.instagram', 
+    'allauth.socialaccount.providers.google', 
+    'social_django', 
       
 ]
 
@@ -134,6 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.github.GithubOAuth2',  # GitHub
+    'social_core.backends.twitter.TwitterOAuth',  # Twitter
+    'social_core.backends.google.GoogleOAuth2',  # Google
 ]
 
 SITE_ID = 1
@@ -145,7 +150,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['user', 'repo'],  # Adjust scopes as needed
     },
     'twitter': {
-        'SCOPE': ['read'],
+        'APP': {
+            'client_id': config('TWITTER_CONSUMER_KEY'),  # Replace with your Twitter app's client ID
+            'secret': config('TWITTER_CONSUMER_SECRET'),  # Replace with your Twitter app's secret
+        }
     },
     'google': {
         'SCOPE': ['profile', 'email'],
@@ -154,5 +162,33 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 LOGIN_REDIRECT_URL = '/'  # Redirect to home or dashboard after login
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect to home or login page after logout
+ACCOUNT_LOGOUT_REDIRECT_URL = '/login/'  # Redirect to home or login page after logout
+
+ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
+
+# Automatically connect users to their social account
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+#SOCIALACCOUNT_LOGIN_ON_GET=True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://b600-103-59-75-216.ngrok-free.app',
+]
+
+
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_CLIENT_SECRET')
+
+SOCIAL_AUTH_TWITTER_KEY = config('TWITTER_CONSUMER_KEY')
+SOCIAL_AUTH_TWITTER_SECRET = config('TWITTER_CONSUMER_SECRET')
+
+SOCIAL_AUTH_GITHUB_KEY = config('GITHUB_CLIENT_ID')
+SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_CLIENT_SECRET')
+
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'  # Redirect to home page or dashboard after successful login
 

@@ -32,7 +32,73 @@
             
             <p>Don't have an account<a href='/register/'>register</a></p>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="social-login-buttons">
+              <!-- Google Sign-In Button --><p>
+              <a href="/google-login/" class="btn btn-lg btn-block btn-google">
+                  <img src="https://blog.hubspot.com/marketing/google-logo-history" alt="Google logo" class="google-logo" />
+                  Sign In with Google
+              </a></p>
+              
+              <!-- Twitter Sign-In Button -->
+              <a href="/login/twitter/" class="btn btn-sm btn-block btn-twitter">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_2021.svg" alt="Twitter logo" class="social-logo" />
+                  Sign In with Twitter
+              </a>
+          
+              <!-- GitHub Sign-In Button -->
+              <a href="/github-login/" class="btn btn-sm btn-block btn-github">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub logo" class="social-logo" />
+                  Sign In with GitHub
+              </a>
+              <!-- Styling for the buttons -->
+          <style>
+            .social-login-buttons {
+                margin-top: 20px;
+                text-align: center;
+            }
+            
+            .btn-google {
+                background-color: #4285F4;
+                color: white;
+                {% comment %} padding: 12px;
+                font-size: 16px;
+                text-align: center;
+                display: inline-flex;
+                align-items: center;
+                border-radius: 5px; {% endcomment %}
+            }
+        
+            .btn-twitter, .btn-github {
+                background-color: #1DA1F2;
+                color: white;
+                {% comment %} padding: 8px;
+                font-size: 14px;
+                text-align: center;
+                display: inline-flex;
+                align-items: center;
+                border-radius: 5px;
+                margin-top: 10px; {% endcomment %}
+            }
+        
+            .btn-github {
+                background-color: #333;
+            }
+        
+            .social-logo {
+                width: 20px;
+                margin-right: 10px;
+            }
+            
+            .btn:hover {
+                opacity: 0.9;
+            }
+        </style>
+            
+          </div>
           </form>
+          
+        
+        
         
         <script src="" async defer></script>
     </body>

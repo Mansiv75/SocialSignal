@@ -51,6 +51,67 @@
             </div>
             <p>Already have an account<a href='/login/'>login</a></p>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="social-login-buttons">
+              <!-- Google Sign-Up Button --><p>
+              <a href="{% url 'social:begin' 'google' %}" class="btn btn-lg btn-google">
+                  <img src="https://developers.google.com/identity/images/Google-Logo.png" alt="Google logo" class="google-logo" />
+                  Sign Up with Google
+              </a></p>
+          
+              <!-- Twitter Sign-Up Button -->
+              <a href="{% url 'social:begin' 'twitter' %}" class="btn btn-sm btn-twitter">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_2021.svg" alt="Twitter logo" class="social-logo" />
+                  Sign Up with Twitter
+              </a>
+          
+              <!-- GitHub Sign-Up Button -->
+              <a href="{% url 'social:begin' 'github' %}" class="btn btn-sm btn-github">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub logo" class="social-logo" />
+                  Sign Up with GitHub
+              </a>
+              <style>
+                .social-login-buttons {
+                    margin-top: 20px;
+                    text-align: center;
+                }
+                
+                .btn-google {
+                    background-color: #4285F4;
+                    color: white;
+                    {% comment %} padding: 12px;
+                    font-size: 16px;
+                    text-align: center;
+                    display: inline-flex;
+                    align-items: center;
+                    border-radius: 5px; {% endcomment %}
+                }
+            
+                .btn-twitter, .btn-github {
+                    background-color: #1DA1F2;
+                    color: white;
+                    {% comment %} padding: 8px;
+                    font-size: 14px;
+                    text-align: center;
+                    display: inline-flex;
+                    align-items: center;
+                    border-radius: 5px;
+                    margin-top: 10px; {% endcomment %}
+                }
+            
+                .btn-github {
+                    background-color: #333;
+                }
+            
+                .social-logo {
+                    width: 20px;
+                    margin-right: 10px;
+                }
+                
+                .btn:hover {
+                    opacity: 0.9;
+                }
+            </style>
+          </div>
           </form>
         
         <script src="" async defer></script>
