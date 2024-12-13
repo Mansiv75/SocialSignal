@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from core.views import *
 from allauth.socialaccount.providers.google.views import oauth2_login
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('', home_page, name="home"),
@@ -26,10 +26,12 @@ urlpatterns = [
     path('login/', login_page, name="login"),
     path('register/', register_page, name="register"),
     path('logout/', logout_page, name="logout"),
-    #path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('github-login/', github_login, name="github"),
     path('twitter-data/', fetch_twitterdata, name="twitter"),
     path('google-login/', custom_google_login, name='google-login'),
     path('login/twitter/', lambda request: redirect('/accounts/twitter/login/')),
     path('auth/', include('social_django.urls')),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

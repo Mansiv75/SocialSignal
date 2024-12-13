@@ -15,7 +15,9 @@ from allauth.socialaccount.providers.google.views import oauth2_login
 
 from social_django.utils import psa
 
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 def home_page(request):
     print("Home page view called!")
     return render(request, 'index.html')
@@ -122,3 +124,8 @@ GITHUB_REDIRECT_URI = "http://127.0.0.1:8000/accounts/github/login/callback/"  #
 def github_login(request):
     return redirect(f"https://github.com/login/oauth/authorize?client_id={GITHUB_CLIENT_ID}&redirect_uri={GITHUB_REDIRECT_URI}")
 
+
+@api_view('GET')
+@permission_classes([IsAuthenticated])
+def protected_route(request):
+    return Response({"message": "This is a protected route"})

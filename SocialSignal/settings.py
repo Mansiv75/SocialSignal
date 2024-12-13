@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-bcakz24wg*x)_=ov#5j9ge8aks7u9p=9$f-+k9p0go=^k4)o34
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['b600-103-59-75-216.ngrok-free.app', '127.0.0.1:8000', '127.0.0.1','localhost']
+ALLOWED_HOSTS = ['e726-2409-4085-2d03-b319-5c7b-d74c-54dd-f480.ngrok-free.app', '127.0.0.1:8000', '127.0.0.1','localhost']
 
 
 # Application definition
@@ -174,7 +174,7 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 #SOCIALACCOUNT_LOGIN_ON_GET=True
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://b600-103-59-75-216.ngrok-free.app',
+    'https://e726-2409-4085-2d03-b319-5c7b-d74c-54dd-f480.ngrok-free.app',
 ]
 
 
@@ -192,3 +192,12 @@ SOCIAL_AUTH_GITHUB_SECRET = config('GITHUB_CLIENT_SECRET')
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'  # Redirect to home page or dashboard after successful login
 
+INSTALLED_APPS += [
+    'rest_framework',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
